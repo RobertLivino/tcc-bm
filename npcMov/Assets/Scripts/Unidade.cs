@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Threading;
 
 public class Unidade : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    [SerializeField] Transform target1;
+    [SerializeField] Transform target2;
+    bool agentStatus = false;
     
     NavMeshAgent agent;
     // Start is called before the first frame update
@@ -19,7 +24,17 @@ public class Unidade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.position);
+        
+
+        if (agentStatus == false)
+        {
+            agent.SetDestination(target1.position);
+        }
+        else
+        {
+            agent.SetDestination(target2.position);
+        }
+        
         /*interromper SetDestination
         seguir para outro target*/
         /*Utilizar collision como trigger
@@ -29,4 +44,17 @@ public class Unidade : MonoBehaviour
         /*possibilidade de colocar area de collision para iniciar timer
         e trocar sprite*/
     }
+
+    private void OnTriggerEnter2D()
+    {
+        if (agentStatus == false)
+        {
+            agentStatus = true;
+        }
+        else
+        {
+            agentStatus = false;
+        }
+    }
 }
+

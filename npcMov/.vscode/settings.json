@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "TestNavMesh2d.sln"
+    "dotnet.defaultSolution": "npcMov.sln"
 }
